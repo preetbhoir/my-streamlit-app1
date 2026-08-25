@@ -28,12 +28,12 @@ def upload_to_drive(uploaded_file):
         scopes=["https://www.googleapis.com/auth/drive.file"]
     )
     service = build('drive', 'v3', credentials=creds)
-    folder_id = st.secrets["FOLDER_ID"]
+    folder_id = st.secrets["https://drive.google.com/drive/folders/1_qv7hHz-UilVWdIMUm1azXx3z8V5AaJa?dmr=1&ec=wgc-drive-%5Bmodule%5D-goto"]
 
     # File metadata and binary content
     file_metadata = {
         'name': uploaded_file.name,
-        'parents': [folder_id]
+        'parents': [https://drive.google.com/drive/folders/1_qv7hHz-UilVWdIMUm1azXx3z8V5AaJa?dmr=1&ec=wgc-drive-%5Bmodule%5D-goto]
     }
     media = MediaIoBaseUpload(
         io.BytesIO(uploaded_file.getvalue()),
