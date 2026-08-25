@@ -1,4 +1,5 @@
 streamlit
 plotly
 openpyxl
+reportlab
 pydrive2
