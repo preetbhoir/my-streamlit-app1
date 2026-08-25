@@ -15,41 +15,6 @@ from reportlab.platypus import SimpleDocTemplate, Table, TableStyle, Paragraph, 
 import streamlit as st
 from openpyxl.styles import Alignment, Border, Font, PatternFill, Side
 from openpyxl.utils import get_column_letter
-import streamlit as st
-from google.oauth2 import service_account
-from googleapiclient.discovery import build
-from googleapiclient.http import MediaIoBaseUpload
-
-def upload_to_drive(uploaded_file):
-    # Load secrets
-    creds_dict = dict(st.secrets["gcp_service_account"])
-    creds = service_account.Credentials.from_service_account_info(
-        creds_dict,
-        scopes=["https://www.googleapis.com/auth/drive.file"]
-    )
-    service = build('drive', 'v3', credentials=creds)
-    folder_id = st.secrets["https://drive.google.com/drive/folders/1_qv7hHz-UilVWdIMUm1azXx3z8V5AaJa?dmr=1&ec=wgc-drive-%5Bmodule%5D-goto"]
-
-    # File metadata and binary content
-    file_metadata = {
-        'name': uploaded_file.name,
-        'parents': [https://drive.google.com/drive/folders/1_qv7hHz-UilVWdIMUm1azXx3z8V5AaJa?dmr=1&ec=wgc-drive-%5Bmodule%5D-goto]
-    }
-    media = MediaIoBaseUpload(
-        io.BytesIO(uploaded_file.getvalue()),
-        mimetype=uploaded_file.type,
-        resumable=True
-    )
-
-    # Upload file
-    file = service.files().create(
-        body=file_metadata,
-        media_body=media,
-        fields='id, webViewLink'
-    ).execute()
-
-    # Returns public view link
-    return file.get('webViewLink')
 
 DB_FILE = "school_assets.db"
 BILLS_DIR = Path(__file__).resolve().parent / "asset_bills"
@@ -1023,4 +988,6 @@ elif menu == "📤 Reports":
             use_container_width=True,
             type="primary",
         )
+
+
 
